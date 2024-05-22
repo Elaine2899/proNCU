@@ -1,0 +1,44 @@
+body {
+    background-color: #ede0d4;
+    display: flex;
+    flex-wrap: wrap;
+    height: 100vh;
+    color: #414833;
+}
+.my-container,
+.dashboard-container,
+.reminder-container,
+.game-container{
+    flex: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+}
+
+.my-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}.my-container a img {
+    width: 100px;
+    height: auto;
+    background-color: transparent;
+}
+
+.my-container .user.name {
+    color: #414833;
+}
+.my-container a img[alt="user"] {
+    display: none;
+}
+
+.my-container a::before {
+    content: attr(alt);
+    display: block;
+    color: #414833;
+    font-size: 16px;
+    margin-bottom: 10px;
+}

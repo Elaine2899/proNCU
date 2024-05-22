@@ -1,0 +1,127 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #EDE0D4;
+}
+
+.calendar {
+    height: 80%;
+    width: 90%;
+    margin: 10px auto;
+    background: #EDE0D4;
+}
+
+.month-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.month-changers {
+    position: absolute;
+}
+
+.month-changers {
+    right: 70px;
+    font-size: 32px;
+}
+
+#month-year {
+    font-size: 33px;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.month-changers div {
+    cursor: pointer;
+    font-size: 30px;
+    align-self: center;
+}
+
+.weekdays {
+    display: flex;
+    background-color: #EDE0D4;
+    color: #414833;
+    text-align: center;
+    padding: 10px 0;
+    font-weight: bold;
+}
+
+.weekdays div {
+    flex: 1;
+    font-size: 16px;
+    text-align: left;
+}
+
+hr {
+    margin: 0;
+    padding: 0;
+    border: none;
+    height: 0.5px;
+    background-color: #414833;
+}
+
+.days-grid div {
+    position: relative;
+    height: 107px;
+    padding: 10px;
+    border-bottom: 0.3px solid #414833;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+
+.days-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: left;
+    font-size: 17px;
+    font-style: italic;
+    margin-top: 0;
+}
+
+.empty {
+    color: rgba(65, 72, 51, 0.5);
+    font-size: 17px;
+}
+
+.days-grid div.empty,
+.days-grid div:empty {
+    overflow: hidden;
+}
+
+.event {
+    display: block;
+    margin: 0;
+    padding: 2px 3px;
+    color: black;
+    border-radius: 3px;
+    font-size: 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border: none;
+    background-color: transparent;
+}
+
+.events-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    overflow: hidden;
+    max-height: 80px;
+    border: none;
+    background: transparent;
+    border-bottom: none;
+}
+
+.days-grid div:hover {
+    background-color: #C8B6A6;
+    cursor: pointer;
+}
+
+.weekend {
+    color: red;
+}

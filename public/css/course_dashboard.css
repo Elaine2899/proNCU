@@ -1,0 +1,70 @@
+header{
+    top: 0; left: 0; right: 0;
+    background-color: #C8B6A6;
+    height: 80px;
+
+}
+
+body{
+    
+    background-color: #ede0d4;
+}
+
+
+nav{
+    font-size: larger;
+    background-color: #ede0d4;
+    height: 80px;
+    align-items: center;
+
+}
+.nav a{
+    color:#ede0d4;
+    padding: 10px;
+    margin: 10px;
+    background-color: #656d4a;
+    text-decoration: none;
+    
+}
+
+h3{
+    position: absolute;
+    margin: 175px 250px;
+    text-align: center;
+}
+
+.container{
+    height: 40%;
+    width: 40%;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    margin: 7vw;
+}
+
+
+.progress-parts{
+    margin: 20px 20px 10px 20px;
+    font-size: large;
+}
+
+.col-3{
+    margin: 10px 50px;
+}
+select{
+    margin: 40px 120px;
+}
+/*course list*/
+h4{
+    margin: 40px;
+}
+.row{
+    margin: 10px 40px;
+    padding: 10px;
+    align-items: center;
+    text-align: center;
+}
+.row:nth-child(odd) {
+    background-color: #C8B6A6;
+    border-radius: 5px;
+}

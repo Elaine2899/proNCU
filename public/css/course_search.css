@@ -1,0 +1,74 @@
+body{
+    background-color: #ede0d4;
+}
+.course_search_title {
+    margin-left: 50px;
+    display:flex;
+    /* flex: 1; */
+    margin-top: 10px;
+}
+
+.col-5{
+    display:inline-flex;
+    margin: 10px 50px;
+}
+.col-3{
+    display:inline-flex;
+    margin: 10px 50px;
+}
+.col-12{
+    display: grid;
+    place-items: center;
+}
+.toast-body{
+    color: #484311;
+    background-color: #f0eae5;
+    width: 490px;
+    
+}
+
+#liveToastBtn {
+    background-color: #e9ecef;
+    border: 1px solid #ced4da;
+    color: rgb(73, 80, 87);
+}
+
+
+/*查詢按鈕*/
+.col-12 button{
+    color: #ede0d4;
+    background-color: #656d4a;
+}
+/*加入課表*/
+.dropdown{
+    display: block;
+    align-items: center;
+}
+/*課表list*/
+.row{
+    margin: 10px;
+    padding: 10px;
+    align-items: center;
+    text-align: center;
+
+}
+
+.row:hover {
+    background-color: #C8B6A6;
+    border-radius: 10px;
+}
+.rowtitle{
+    margin: 15px 10px;
+    border-radius: 10px;
+    background-color: #C8B6A6;
+}
+
+/*頁數*/
+ul{
+    align-items: center;
+    justify-content: center;
+}
+.page-link{
+    color: #656d4a;
+    background-color: #ede0d4;
+}

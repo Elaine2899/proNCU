@@ -1,0 +1,78 @@
+body {
+    background-color: #EDE0D4;
+    
+}
+
+.navbar {
+    background-color: #C8B6A6;
+    width: 100%;
+    position: absolute;
+}
+
+img {
+    height: 22px;
+    width: 22px;
+}
+
+.navbar-brand {
+    color: #414833;
+    font-weight: 500;
+}
+
+.navbar-brand:hover {
+    text-decoration: none;
+    color: #EDE0D4;
+}
+
+.header_container {
+    position: absolute;
+    right: 0;
+    width: max-content;
+}
+
+.nav-link {
+    margin-right: 20px;
+    font-weight: bold;
+    color: #414833;
+}
+
+.nav-link:hover {
+    color: #EDE0D4;
+}
+
+.header-calendar {
+    color: #414833;
+    margin-right: 20px;
+    font-weight: bold;
+}
+
+.header-calendar:hover {
+    color: #EDE0D4;
+    text-decoration: none;
+}
+
+.dropdown-item {
+    color: #414833;
+}
+
+.dropdown-menu{
+    background-color: #C8B6A6;
+    border: none;
+}
+
+.dropdown-item:hover {
+    text-decoration: none;
+    color: #EDE0D4;
+    background: none;
+
+}
+
+.setting {
+    filter: brightness(60%) saturate(120%) sepia(50%) hue-rotate(-90deg) contrast(90%);
+    margin-right: 10px;
+}
+
+.setting:hover {
+    text-decoration: none;
+    color: #EDE0D4;
+}
