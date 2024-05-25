@@ -23,9 +23,19 @@ Route::get('/calendar', [CalendarController::class, 'ShowCalendarPage'])->name('
 
 Route::get('/calendar/events', [CalendarController::class, 'getEvents']);
 
+Route::post('/calendar/events', [CalendarController::class, 'addEvent']);
+
+Route::delete('/calendar/events', [CalendarController::class, 'deleteEvent']);
+
 Route::get('/course', [CourseController::class, 'ShowCourseSearch'])->name('course_search');
+
+Route::post('/course/add', [CourseController::class, 'AddCourse']);
 
 Route::get('/course/dashboard', [CourseController::class, 'ShowCourseDashboard'])->name('course_dashboard');
 
 Route::get('/course/table', [CourseController::class, 'ShowCourseTable'])->name('course_table');
+
+Route::get('/course/table/my', [CourseController::class, 'getCourses']);
+
+Route::delete('/course/delete', [CourseController::class, 'deleteCourse']);
 ?>

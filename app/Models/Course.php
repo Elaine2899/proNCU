@@ -5,10 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Timetable extends Model
+class Course extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['user_sid', 'course_semester', 'course_no'];
+    
     public function user()
     {
         return $this->belongsTo(User::class);

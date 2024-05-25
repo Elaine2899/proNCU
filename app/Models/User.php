@@ -16,6 +16,6 @@ class User extends Model
 
     public function course(){
 
-        return $this -> hasMany(Timetable::class);
+        return $this -> hasMany(Course::class);
     }
 }

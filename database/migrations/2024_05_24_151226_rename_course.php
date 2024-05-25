@@ -11,12 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('timetable', function (Blueprint $table) {
+        
+        Schema::create('courses', function (Blueprint $table) {
             $table->id();
             $table->integer('user_sid');
-            $table->integer('serialNo');
+            $table->string('semester');
+            $table->string('courseNo');
             $table->timestamps();
         });
+        //
     }
 
     /**
@@ -24,6 +27,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('timetable');
+        //
+        Schema::dropIfExists('course');
     }
 };

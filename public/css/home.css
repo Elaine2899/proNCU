@@ -1,44 +1,71 @@
 body {
     background-color: #ede0d4;
+    color: #414833;
+}
+.all-container{
     display: flex;
     flex-wrap: wrap;
+    flex-direction: column;
     height: 100vh;
-    color: #414833;
 }
-.my-container,
-.dashboard-container,
-.reminder-container,
-.game-container{
-    flex: 50%;
+.top-container {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 50vh;
+    flex: 0 0 70%;
 }
 
-.my-container{
+.bottom-container {
+    display: flex;
+    flex: 0 0 30%;
+}
+.my-container, .reminder-container, .game-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+}
+.user-link {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    text-decoration: none;
-}.my-container a img {
-    width: 100px;
+}
+.user-link img {
+    width: 200px;
     height: auto;
     background-color: transparent;
+    border-radius: 50px;
+}
+.user-name {
+    color: #414833;
+    font-size: x-large;
+    font-weight: bolder;
+    text-decoration: none;
+}
+.user-link:hover .user-name{
+    text-decoration: none;
+}
+.game-container img{
+    width: 100px;
+    height: auto;
+    margin: 0 20px;
+    filter: saturate(70%);
+}
+.reminder-title{
+    font-size: 24px; /* 設置標題字體大小 */
+    font-weight: bold; /* 設置標題字體粗度 */
+    margin-bottom: 10px; /* 設置標題與下一行的距離 */
+    margin-left: 28px;
 }
 
-.my-container .user.name {
-    color: #414833;
+.reminder-item {
+    font-size: 18px; /* 設置內容字體大小 */
+    font-weight: normal; /* 設置內容字體粗度 */
+    margin-bottom: 5px; /* 設置每行之間的距離 */
+    word-wrap: break-word; /* 讓長單詞在必要時換行 */
+    margin-left: 35px;
 }
-.my-container a img[alt="user"] {
-    display: none;
-}
-
-.my-container a::before {
-    content: attr(alt);
-    display: block;
-    color: #414833;
-    font-size: 16px;
-    margin-bottom: 10px;
+.reminder-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }

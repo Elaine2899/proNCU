@@ -1,67 +1,41 @@
-header{
-    top: 0; left: 0; right: 0;
-    background-color: #C8B6A6;
-    height: 80px;
-
-}
 body{
-    
-    background-color: #ede0d4;
-}
-
-
-nav{
-    font-size: larger;
-    background-color: #ede0d4;
-    height: 80px;
-    align-items: center;
-
-}
-.nav a{
-    color:#ede0d4;
-    padding: 10px;
-    margin: 10px;
-    background-color: #656d4a;
-    text-decoration: none;
-    
+  background-color: #ede0d4;
 }
 
 
 .table {
-    table-layout: fixed;
-    width: 100%;
-  }
-
-  .table td{
-    background-color: #f3e9df;
-    height: 100px; /* 設置每個單元格的高度 */
-    width: 50px;
-    text-align: center; /* 設置文字居中 */
-
-    
-  }
-  .table th{
-    background-color: #C8B6A6;
-    color: #414833;
-    text-align: center;
-    align-content: center;
-  }
-
-  .cancel-btn {
-    display: none; /* 初始狀態下隱藏取消按鈕 */
-
-  }
-
-  td {
-    position: relative;
-    padding: 30px;
+  table-layout: fixed;
+  width: 100%;
 }
-  td:hover .cancel-btn {
-    display: block; /* 滑鼠 hover 時顯示取消按鈕 */
 
-    width: 60%;
-    position: absolute;
-    top: 80%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
+.table td{
+  background-color: #f3e9df;
+  height: 100px; /* 設置每個單元格的高度 */
+  width: 50px;
+  text-align: center; /* 設置文字居中 */
+
+  
+}
+.table th{
+  background-color: #C8B6A6;
+  color: #414833;
+  text-align: center;
+  align-content: center;
+}
+
+.cancel-btn {
+  display: none; /* 初始狀態下隱藏移除按鈕 */
+}
+
+td {
+  position: relative;
+  padding: 30px;
+}
+td:hover .cancel-btn {
+  display: block; /* 滑鼠 hover 時顯示移除按鈕 */
+  width: 60%;
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

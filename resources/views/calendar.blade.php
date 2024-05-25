@@ -4,7 +4,8 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js'></script>
-    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{asset('css/calendar.css')}}">
 
@@ -37,7 +38,7 @@
         <hr>
         <div class="days-grid" id="days-grid">
             <div>
-                <div class="day-content">1</div>
+                <div class="day-content"></div>
                 <div class="events-container">
                     <!-- 事件動態添加到這裡 -->
                 </div>
@@ -52,10 +53,10 @@
         <h3 style="padding-right: 30px; font-size: 25px;">加入事件</h3>
         <div id="eventList" style="margin-bottom: 20px;"></div>
         <input type="text" id="newEventText" placeholder="輸入" style="width: 100%; margin-bottom: 10px;" />
-        <button onclick="addNewEvent()">加入</button>
+        <!-- <button onclick="addNewEvent()">加入</button> -->
     </div>
     </div>
 
-<script src= "{{asset('js/ca.js')}}"></script>
+<script src= "{{asset('js/calendar.js')}}"></script>
 
 @endsection

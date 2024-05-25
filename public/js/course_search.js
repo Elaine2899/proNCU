@@ -46,22 +46,30 @@ $(document).ready(function() {
                 $("<div>").addClass("col").html(formattedClassTimes),
                 $("<div>").addClass("col").append(
                     $("<div>").addClass("btn-group dropend").append(
+                        
                         $("<button>").attr({
                             type: "button",
                             class: "btn btn-secondary dropdown-toggle",
                             "data-bs-toggle": "dropdown",
                             "aria-expanded": "false"
                         }).text("加入"),
+                        
                         $("<ul>").addClass("dropdown-menu").append(
-                            $("<li>").append(
-                                $("<a>").addClass("dropdown-item").attr("href", "#").text("112-2")
+                            $("<li>").append( 
+                                $("<a>").addClass("dropdown-item").click(function(){
+                                    var courseNo = course.classNo.toString();
+                                    var semester = $(this).text();
+                                    addCourse(courseNo, semester);
+                                }).text("112-2")
                             ),
                             $("<li>").append(
-                                $("<a>").addClass("dropdown-item").attr("href", "#").text("113-1")
-                            ),
-                            $("<li>").append(
-                                $("<a>").addClass("dropdown-item").attr("href", "#").text("...")
+                                $("<a>").addClass("dropdown-item").click(function(){
+                                    var courseNo = course.classNo.toString();
+                                    var semester = $(this).text();
+                                    addCourse(courseNo, semester);
+                                }).text("113-1")
                             )
+                            
                         )
                     )
                 )
@@ -189,5 +197,26 @@ $(document).ready(function() {
         // 顯示過濾後的課程
         displayCourses(filteredData);
     });
+
+    function addCourse(classNo, classSemester) {
+        $.ajax({
+            url: '/proncu/public/course/add',
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            data: {
+                course_no: classNo,
+                course_semester: classSemester
+            },
+            success: function() {
+                
+                alert("加入成功");
+                
+            }
+
+        });
+    }
+    
 
 });
