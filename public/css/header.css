@@ -1,5 +1,6 @@
 body {
-    background-color: #EDE0D4;    
+    background: none;
+    margin: 0;
 }
 
 .navbar {
@@ -23,14 +24,14 @@ img {
     color: #EDE0D4;
 }
 
-.header_container {
+ .header-container {
     position: absolute;
     right: 0;
     width: max-content;
-}
+} 
 
 .nav-link {
-    margin-right: 20px;
+    margin-right: 10px;
     font-weight: bold;
     color: #414833;
 }
@@ -39,13 +40,13 @@ img {
     color: #EDE0D4;
 }
 
-.header-calendar {
+.header_calendar, .header_logout {
     color: #414833;
-    margin-right: 20px;
+    margin:0 30px;
     font-weight: bold;
 }
 
-.header-calendar:hover {
+.header_calendar:hover, .header_logout:hover {
     color: #EDE0D4;
     text-decoration: none;
 }
@@ -68,7 +69,7 @@ img {
 
 .setting {
     filter: brightness(60%) saturate(120%) sepia(50%) hue-rotate(-90deg) contrast(90%);
-    margin-right: 10px;
+    margin-right: 20px;
 }
 
 .setting:hover {

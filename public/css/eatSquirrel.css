@@ -1,0 +1,28 @@
+body {
+    background-color: #c8b6a6;
+    background-size: cover;
+    background-repeat: no-repeat; 
+    background-position: center;
+  
+  }
+  
+  #eatSquirrel {
+    border: 6px solid #414833;
+  }
+  
+  #myScore,
+  #myScore2 {
+    font-size: 1.5rem;
+    color: #414833;
+  }
+  
+  #Start {
+    padding: 0.25rem 0.5rem;
+    background-color: #656D4A;
+    font-size: 1.15rem;
+    border-radius: 15px;
+    /* display: block; */
+    margin-top: 12px;
+    border: solid #656D4A;
+    color: #EDE0D4;
+  }

@@ -13,11 +13,19 @@ Route::get('/welcome', [WelcomeController::class, 'ShowLoginPage']);
 
 Route::post('/welcome', [WelcomeController::class, 'login']);
 
-//Route::get('/logout', [WelcomeController::class, 'logout']);
+Route::get('/logout', [WelcomeController::class, 'logout'])->name('logout');
 
 Route::get('/home', [HomeController::class, 'ShowHomePage'])->name('home');
 
+Route::get('/home/dashboard', [CourseController::class, 'getDashboardCourses']);
+
+Route::post('/home/calendar', [CalendarController::class, 'getTodayEvents']);
+
+Route::get('/home/eatSquirrel', [HomeController::class, 'ShoweatSquirrel'])->name('eatSquirrel');
+
 Route::get('/set', [HomeController::class, 'ShowSet'])->name('set');
+
+Route::post('/set', [HomeController::class, 'ChangeUserData'])->name('change.user.data');
 
 Route::get('/calendar', [CalendarController::class, 'ShowCalendarPage'])->name('calendar');
 
@@ -33,9 +41,13 @@ Route::post('/course/add', [CourseController::class, 'AddCourse']);
 
 Route::get('/course/dashboard', [CourseController::class, 'ShowCourseDashboard'])->name('course_dashboard');
 
+Route::get('/course/dashboard/my', [CourseController::class, 'getDashboardCourses']);
+
+Route::post('/course/change', [CourseController::class, 'ChangeCourseCategory']);
+
 Route::get('/course/table', [CourseController::class, 'ShowCourseTable'])->name('course_table');
 
-Route::get('/course/table/my', [CourseController::class, 'getCourses']);
+Route::get('/course/table/my', [CourseController::class, 'getTableCourses']);
 
 Route::delete('/course/delete', [CourseController::class, 'deleteCourse']);
 ?>

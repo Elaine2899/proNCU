@@ -7,6 +7,7 @@ body {
     flex-wrap: wrap;
     flex-direction: column;
     height: 100vh;
+    margin-top: 60px;
 }
 .top-container {
     display: flex;
@@ -17,7 +18,7 @@ body {
     display: flex;
     flex: 0 0 30%;
 }
-.my-container, .reminder-container, .game-container {
+.my-container, .dashboard-container, .reminder-container, .game-container {
     flex: 1;
     display: flex;
     align-items: center;
@@ -56,7 +57,19 @@ body {
     margin-bottom: 10px; /* 設置標題與下一行的距離 */
     margin-left: 28px;
 }
-
+.iframe-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    z-index: 9999;
+}
+iframe{
+    width: 100%;
+    height: 100%;
+    border: none;
+}
 .reminder-item {
     font-size: 18px; /* 設置內容字體大小 */
     font-weight: normal; /* 設置內容字體粗度 */

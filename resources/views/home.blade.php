@@ -12,12 +12,19 @@
 
 @section('upper_body')
 
+    <?php 
+    
+        $user_name = Session::get('user_name');
+        $user_sticker = Session::get('user_sticker');
+    
+    ?>
+
     <div class="all-container">
         <div class="top-container">
             <div class="my-container">
                 <a href="{{ route('set') }}" class="user-link">
-                    <img src="{{asset('img/sticker/img1.jpg')}}" alt="user">
-                    <div class="user-name"><br>小菓菓</div>
+                    <img src="{{asset('img/sticker/' . $user_sticker)}}" alt="user">
+                    <div class="user-name"><br>{{ $user_name }}</div>
                 </a>
             </div>        
 
@@ -27,19 +34,21 @@
 @section('lower_body')    
 </div> 
         <div class="bottom-container">
-            <div class="reminder-container">
+            <div id = "reminder-container" class="reminder-container">
                 <p class="reminder-title">今天の事</p>
-                <p class="reminder-item">#資料庫管理 線上上課</p>
-                <p class="reminder-item">#資料庫管理 作業記得交</p>
+                
             </div>
             <div class="game-container">
+
                 <img src="{{asset('img/surprise-box.png')}}" alt="surprise box">
-                <img src="{{asset('img/surprise-box.png')}}" alt="surprise box">
+                <a Target="_blank" href="{{ route('eatSquirrel') }}">
+                    <img src="{{asset('img/surprise-box.png')}}" alt="surprise box">
+                </a>
             </div>
         </div>
     </div>
 
-    <script src="{{asset('js/home.js')}}"></script>
+    <script src="{{asset('js/home_new.js')}}"></script>
 @endsection
 
 

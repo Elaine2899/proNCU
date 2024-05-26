@@ -21,10 +21,10 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-custom">
-            <a class="navbar-brand" href="{{ route('home') }}">
+            <a class="navbar-brand" href="{{ route('home') }}" target="_top">
                 <img src="{{asset('img/squirrel_o.png')}}" alt="squirrel"> Pro<sup>2</sup> NCU
             </a>
-            <div class="container d-flex align-items-center ml-auto header_container">
+            <div class="header-container d-flex justify-content-end align-items-center">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">課程</a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -33,6 +33,7 @@
                         <a class="dropdown-item" href="{{ route('course_table') }}">我的課表</a>
                     </div>
                 <a class="header-calendar" href="{{ route('calendar') }}">行事曆</a>
+                <a class="header_logout" href="{{ route('logout') }}" target="_top">登出</a>
                 <a class="setting" href="{{ route('set') }} ">
                     <img src="{{asset('img/setting.png')}}" alt="setting">
                 </a>

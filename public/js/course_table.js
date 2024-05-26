@@ -84,7 +84,8 @@ function renderCourses(courses, filteredData) {
                         if (row) {
                             const cell = row.cells[day];
                             if (cell) {
-                                cell.textContent = courseData.title + '\r' + courseData.teachers;
+                                    // 防止移除按鈕和課程信息重疊
+                                    cell.innerHTML += `${courseData.title}<br>${courseData.teachers}<br>`;
                                     // 創建移除課程按鈕
                                     const removeButton = document.createElement('button');
                                     removeButton.textContent = '移除課程';
@@ -99,7 +100,7 @@ function renderCourses(courses, filteredData) {
                                             },
                                             data: {
                                                 semester: "112-2",
-                                                courseNo: courseNo
+                                                courseNo: course.courseNo
                                             },
                                             success: function() {
                                                 location.reload();

@@ -58,15 +58,17 @@ $(document).ready(function() {
                             $("<li>").append( 
                                 $("<a>").addClass("dropdown-item").click(function(){
                                     var courseNo = course.classNo.toString();
+                                    var courseType = course.courseType.toString();
                                     var semester = $(this).text();
-                                    addCourse(courseNo, semester);
+                                    addCourse(courseNo, semester, courseType);
                                 }).text("112-2")
                             ),
                             $("<li>").append(
                                 $("<a>").addClass("dropdown-item").click(function(){
                                     var courseNo = course.classNo.toString();
+                                    var courseType = course.courseType.toString();
                                     var semester = $(this).text();
-                                    addCourse(courseNo, semester);
+                                    addCourse(courseNo, semester, courseType);
                                 }).text("113-1")
                             )
                             
@@ -198,7 +200,28 @@ $(document).ready(function() {
         displayCourses(filteredData);
     });
 
-    function addCourse(classNo, classSemester) {
+    function addCourse(classNo, classSemester, courseType) {
+        // 定義變數 courseCategory
+        let courseCategory = '';
+
+        // 获取 classNo 的前两个字符
+        const classPrefix = classNo.substring(0, 2);
+
+        // 根据 classPrefix 或 courseType 的条件更改 courseCategory 的值
+        //只有資管系課程的判斷
+        if (classPrefix === 'PE') {
+            courseCategory = '體育';
+        } else if (classPrefix === 'GS' || classPrefix === 'CC') {
+            courseCategory = '通識';
+        } else if (courseType === 'REQUIRED') {
+            courseCategory = '必修';
+        } else if (courseType === 'ELECTIVE' && classPrefix === 'IM') {
+            courseCategory = '系選修';
+        } else if (courseType === 'ELECTIVE') {
+            courseCategory = '外系選修';
+        }
+        
+
         $.ajax({
             url: '/proncu/public/course/add',
             method: 'POST',
@@ -207,7 +230,8 @@ $(document).ready(function() {
             },
             data: {
                 course_no: classNo,
-                course_semester: classSemester
+                course_semester: classSemester,
+                course_category: courseCategory
             },
             success: function() {
                 

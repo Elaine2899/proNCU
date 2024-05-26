@@ -27,6 +27,7 @@ class WelcomeController extends Controller
             $user = $result[0];
             Session::put('user_sid', $user->studentID);
             Session::put('user_name', $user->userName);
+            Session::put('user_sticker', $user->sticker_id);
 
             return redirect('/home');
 
@@ -39,7 +40,7 @@ class WelcomeController extends Controller
     public function logout(){
 
         Session::flush();
-        return redirect('/login');
+        return redirect('/welcome');
 
     }
 }

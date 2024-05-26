@@ -22,6 +22,16 @@ class CalendarController extends Controller
         return response()->json($events);
 
     }
+
+    public function getTodayEvents(Request $request){
+
+        $sid = Session::get('user_sid');
+        $query = "SELECT * FROM events WHERE user_sid = ? AND end_time = ?";
+        $events = DB::select($query, [$sid, $request->date]);
+        return response()->json($events);
+
+    }
+
     public function addEvent(Request $request)
     {              
         $sid = Session::get('user_sid');

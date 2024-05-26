@@ -17,11 +17,20 @@ class CourseController extends Controller
         return view(view:"course_dashboard");
     }
 
+    public function getDashboardCourses(){
+
+        $sid = Session::get('user_sid');
+        $query = "SELECT * FROM courses WHERE user_sid = ?";
+        $courses = DB::select($query, [$sid]);
+        return response()->json($courses);
+
+    }
+
     public function ShowCourseTable(){
         return view(view:"course_table");
     }
 
-    public function getCourses(){
+    public function getTableCourses(){
 
         $sid = Session::get('user_sid');
         $semester = "112-2";
@@ -31,15 +40,36 @@ class CourseController extends Controller
 
     }
 
-
     public function addCourse(Request $request)
     {
         $sid = session('user_sid');
         $course = new Course();
         $course->courseNo = $request->input('course_no');
         $course->semester = $request->input('course_semester');
+        $course->category = $request->input('course_category');
         $course->user_sid = $sid;
         $course->save();
+
+    }
+
+    public function ChangeCourseCategory(Request $request){
+
+        $sid = Session::get('user_sid');
+
+        // 查找特定的课程记录
+        $course = Course::where('courseNo', $request->input('courseNo'))
+        ->where('user_sid', $sid)
+        ->first();
+
+        if ($course) {
+            // 更新课程的类别
+            $course->category = $request->input('courseCategory');
+            $course->save();
+
+            return response()->json(['message' => 'Category updated successfully'], 200);
+        } else {
+            return response()->json(['message' => 'Course not found'], 404);
+        }
 
     }
 

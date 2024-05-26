@@ -1,41 +1,50 @@
-body{
-  background-color: #ede0d4;
+/* 整體背景設定 */
+body {
+  background-color: #ede0d4;  /* 淡棕色背景 */
 }
 
-
+/* 表格基本樣式設定 */
 .table {
-  table-layout: fixed;
-  width: 100%;
+  table-layout: fixed; /* 固定表格布局 */
+  width: 100%; /* 表格寬度填滿容器 */
 }
 
-.table td{
-  background-color: #f3e9df;
-  height: 100px; /* 設置每個單元格的高度 */
-  width: 50px;
-  text-align: center; /* 設置文字居中 */
-
-  
-}
-.table th{
-  background-color: #C8B6A6;
-  color: #414833;
-  text-align: center;
-  align-content: center;
+/* 表格內單元格的樣式 */
+.table td {
+  background-color: #f3e9df; /* 單元格背景色為淡灰棕色 */
+  height: 100px; /* 每個單元格的高度 */
+  width: 50px; /* 每個單元格的寬度 */
+  text-align: center; /* 文字居中顯示 */
+  padding: 10px; /* 增加內距 */
+  position: relative; /* 相對定位，用於放置移除按鈕 */
 }
 
+/* 表格表頭的樣式 */
+.table th {
+  background-color: #C8B6A6; /* 表頭背景色為深灰棕色 */
+  color: #414833; /* 表頭文字顏色為深橄欖色 */
+  text-align: center; /* 表頭文字居中 */
+  vertical-align: middle; /* 表頭文字垂直居中 */
+}
+
+/* 移除按鈕的基本樣式 */
 .cancel-btn {
-  display: none; /* 初始狀態下隱藏移除按鈕 */
+  display: none; /* 移除按鈕預設為隱藏 */
+  width: 60%; /* 按鈕寬度 */
+  position: absolute; /* 絕對定位，依據父元素(td)定位 */
+  top: 80%; /* 頂部定位，留有空間顯示課程信息 */
+  left: 50%; /* 左側定位在中央 */
+  transform: translate(-50%, -50%); /* 確保按鈕完全居中 */
+  z-index: 10; /* 確保按鈕在上層顯示 */
+  cursor: pointer; /* 鼠標懸停時顯示指針手勢 */
+  background-color: #f3e9df; 
+  color: #414833; 
+  border: none; /* 無邊框 */
+  padding: 5px 10px; /* 內距設定 */
 }
 
-td {
-  position: relative;
-  padding: 30px;
-}
+/* 單元格鼠標懸停時顯示移除按鈕 */
+
 td:hover .cancel-btn {
-  display: block; /* 滑鼠 hover 時顯示移除按鈕 */
-  width: 60%;
-  position: absolute;
-  top: 80%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  display: block; /* 滑鼠懸停時顯示移除按鈕 */
 }
