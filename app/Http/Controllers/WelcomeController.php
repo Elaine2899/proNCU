@@ -10,9 +10,26 @@ class WelcomeController extends Controller
 
 { 
     
-
     public function ShowLoginPage(){
         return view(view:"login");
+    }
+
+    public function register(Request $request) { 
+        $studentid = $request->input('studentid');
+        $password = $request->input('password');
+
+        if($studentid && trim($studentid) !== '' && $password && trim($password) !== '')
+        $user = new User();
+        $user->studentID = $studentid;
+        $user->password = $password;
+        $user->save();
+
+        Session::put('user_sid', $user->studentID);
+        Session::put('user_name', $user->userName);
+        Session::put('user_sticker', $user->sticker_id);
+
+        return redirect('/home');
+
     }
 
     public function login(Request $request) { 

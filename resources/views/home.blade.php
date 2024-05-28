@@ -16,6 +16,9 @@
     
         $user_name = Session::get('user_name');
         $user_sticker = Session::get('user_sticker');
+        if($user_name === ''){
+           $user_name = '請點擊右上角更改暱稱';
+        }
     
     ?>
 
@@ -39,8 +42,9 @@
                 
             </div>
             <div class="game-container">
-
-                <img src="{{asset('img/surprise-box.png')}}" alt="surprise box">
+                <a Target="_blank" href="{{ route('Game2') }}">
+                    <img src="{{asset('img/surprise-box.png')}}" alt="surprise box">
+                </a>
                 <a Target="_blank" href="{{ route('eatSquirrel') }}">
                     <img src="{{asset('img/surprise-box.png')}}" alt="surprise box">
                 </a>

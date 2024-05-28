@@ -1,8 +1,8 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-TW">
 
 <head>
-    <link rel="icon" href="resources/img/squirrel_o.png">
+    <link rel="icon" href="{{asset('img/squirrel_o.png')}}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{asset('css/header.css')}}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd" crossorigin="anonymous">
@@ -26,14 +26,14 @@
             </a>
             <div class="header-container d-flex justify-content-end align-items-center">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">課程</a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ route('course_search') }}">課程查詢</a>
-                        <a class="dropdown-item" href="{{ route('course_dashboard') }}">學分儀錶板</a>
-                        <a class="dropdown-item" href="{{ route('course_table') }}">我的課表</a>
+                    aria-haspopup="true" aria-expanded="false" style="color:#414833">課程</a>
+                    <div class="dropdown-menu" style="background-color: #C8B6A6" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" style="color:#414833" href="{{ route('course_search') }}">課程查詢</a>
+                        <a class="dropdown-item" style="color:#414833" href="{{ route('course_dashboard') }}">學分儀錶板</a>
+                        <a class="dropdown-item" style="color:#414833" href="{{ route('course_table') }}">我的課表</a>
                     </div>
-                <a class="header-calendar" href="{{ route('calendar') }}">行事曆</a>
-                <a class="header_logout" href="{{ route('logout') }}" target="_top">登出</a>
+                <a class="header-calendar" style="color:#414833" href="{{ route('calendar') }}">行事曆</a>
+                <a class="header_logout" style="color:#414833" href="{{ route('logout') }}" target="_top">登出</a>
                 <a class="setting" href="{{ route('set') }} ">
                     <img src="{{asset('img/setting.png')}}" alt="setting">
                 </a>

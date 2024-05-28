@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    padding: 20px;
+    /* padding: 20px; */
     background-color: #ede0d4;
     color: #414833;
 }
@@ -30,11 +30,13 @@ button {
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
+    transition: all 0.085s ease-in;
 }
 button:hover {
-    background-color: #ede0d4; 
-    color: #414833;
-    transition: background-color 0.3s,color 0.3s;
+    border: 3px solid rgba(65,72,51, 0.3);
+    /* background-color: #ede0d4;  */
+    /* color: #414833; */
+    /* transition: background-color 0.3s,color 0.3s; */
 }
 .name{
     margin-top: 60px;
@@ -44,7 +46,7 @@ input[type="text"] {
     border: none;
     padding: 10px;
     font-size: 16px;
-    border-radius: 5px;
+    border-radius: 8px;
     width: 70%;
     box-sizing: border-box;
     margin-bottom: 20px;
@@ -68,13 +70,19 @@ label img {
     display: block;
     width: 200px;
     height: auto;
-    border: 8px solid transparent;
+    /* border: 8px solid transparent; */
     border-radius: 50px;
-    transition: border-color 0.3s;
+    padding: 0.3rem;
+    transition: all 0.1s ease-in;
 }
-.img-option:checked + label > img, .photo label img:hover{
+
+label img:hover{
+    border: 5px solid rgba(65,72,51, 0.75);
+}
+
+/* .img-option:checked + label > img, .photo label img:hover{
     border-color:#414833;
-}
+} */
 label {
     display: flex;
     flex-direction: column;
@@ -91,9 +99,9 @@ label {
     gap: 20px; /* 可選：設置子元素之間的間距 */
 }
 
-.setting-content{
+/* .setting-content{
     margin-top: 60px;
-}
+} */
 .sb-container {
     display: flex;
     justify-content: center; /* 水平置中 */

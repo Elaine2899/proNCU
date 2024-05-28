@@ -47,3 +47,7 @@ h3{
 .rowtitle{
     background-color: #C8B6A6;
 }
+
+.progress{
+    height: 30px;
+}

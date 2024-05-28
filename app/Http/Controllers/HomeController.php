@@ -22,6 +22,10 @@ class HomeController extends Controller
         return view(view:"eatSquirrel");
     }
 
+    public function ShowGame2(){
+        return view(view:"game2");
+    }
+
     public function ChangeUserData(Request $request){
         $sid = Session::get('user_sid');
 

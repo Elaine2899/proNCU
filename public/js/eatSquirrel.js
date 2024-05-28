@@ -33,7 +33,7 @@ class Fruit {
   // 在畫布上繪製松果
   drawFruit() {
     const pineconeImg = new Image();
-    pineconeImg.src = "./pinecone.png";
+    pineconeImg.src = '../img/eatSquirrel/pinecone.png';
     pineconeImg.onload = () => {
       ctx.drawImage(pineconeImg, this.x, this.y, unit, unit);
     };
@@ -129,21 +129,21 @@ const squirrelImages = {
 };
 
 // 設置松鼠圖片的來源
-squirrelImages.Up.head.src = "./squirrel_head_up.png";
-squirrelImages.Up.mid.src = "./squirrel_mid_up.png";
-squirrelImages.Up.tail.src = "./squirrel_tail_up.png";
+squirrelImages.Up.head.src = '../img/eatSquirrel/squirrel_head_up.png';
+squirrelImages.Up.mid.src = '../img/eatSquirrel/squirrel_mid_up.png';
+squirrelImages.Up.tail.src = '../img/eatSquirrel/squirrel_tail_up.png';
 
-squirrelImages.Right.head.src = "./squirrel_head_right.png";
-squirrelImages.Right.mid.src = "./squirrel_mid.png";
-squirrelImages.Right.tail.src = "./squirrel_tail_right.png";
+squirrelImages.Right.head.src = '../img/eatSquirrel/squirrel_head_right.png';
+squirrelImages.Right.mid.src = '../img/eatSquirrel/squirrel_mid.png';
+squirrelImages.Right.tail.src = '../img/eatSquirrel/squirrel_tail_right.png';
 
-squirrelImages.Down.head.src = "./squirrel_head_down.png";
-squirrelImages.Down.mid.src = "./squirrel_mid_down.png";
-squirrelImages.Down.tail.src = "./squirrel_tail_down.png";
+squirrelImages.Down.head.src = '../img/eatSquirrel/squirrel_head_down.png';
+squirrelImages.Down.mid.src = '../img/eatSquirrel/squirrel_mid_down.png';
+squirrelImages.Down.tail.src = '../img/eatSquirrel/squirrel_tail_down.png';
 
-squirrelImages.Left.head.src = "./squirrel_head_left.png";
-squirrelImages.Left.mid.src = "./squirrel_mid.png";
-squirrelImages.Left.tail.src = "./squirrel_tail_left.png";
+squirrelImages.Left.head.src = '../img/eatSquirrel/squirrel_head_left.png';
+squirrelImages.Left.mid.src = '../img/eatSquirrel/squirrel_mid.png';
+squirrelImages.Left.tail.src = '../img/eatSquirrel/squirrel_tail_left.png';
 
 // 繪製畫面更新函數
 function draw() {

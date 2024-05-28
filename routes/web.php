@@ -13,6 +13,8 @@ Route::get('/welcome', [WelcomeController::class, 'ShowLoginPage']);
 
 Route::post('/welcome', [WelcomeController::class, 'login']);
 
+Route::post('/welcome/register', [WelcomeController::class, 'register'])->name('register');
+
 Route::get('/logout', [WelcomeController::class, 'logout'])->name('logout');
 
 Route::get('/home', [HomeController::class, 'ShowHomePage'])->name('home');
@@ -22,6 +24,8 @@ Route::get('/home/dashboard', [CourseController::class, 'getDashboardCourses']);
 Route::post('/home/calendar', [CalendarController::class, 'getTodayEvents']);
 
 Route::get('/home/eatSquirrel', [HomeController::class, 'ShoweatSquirrel'])->name('eatSquirrel');
+
+Route::get('/home/russia', [HomeController::class, 'ShowGame2'])->name('Game2');
 
 Route::get('/set', [HomeController::class, 'ShowSet'])->name('set');
 

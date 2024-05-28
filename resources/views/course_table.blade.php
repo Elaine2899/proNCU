@@ -3,7 +3,6 @@
 @section('head')
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-     <link rel="stylesheet" href="{{asset('css/course_table.css')}}"> 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -11,6 +10,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="{{asset('css/course_table.css')}}"> 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     
@@ -23,9 +23,9 @@
 @section('main')
 
  <!--選擇學期-->
- <div class="row justify-content-center">
-      <div class="col-md-2" style="text-align: center; margin: 30px;">
-        <p>112-2</p>
+ <div class="row justify-content-center d-flex">
+      <div class="col-md-2 text-center" style="margin: 30px;">
+        <p class="align-middle mb-0 fs-1 fw-bold mt-2">112-2</p>
         <!-- <select id="semester" class="form-select form-select-sm" aria-label="Small select example">
             <option value="0" selected>請選擇學期</option>
             <option value="112-2">112-2</option>
