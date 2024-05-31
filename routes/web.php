@@ -11,9 +11,9 @@ use App\Http\Controllers\CalendarController;
 
 Route::get('/welcome', [WelcomeController::class, 'ShowLoginPage']);
 
-Route::post('/welcome', [WelcomeController::class, 'login']);
+Route::post('/welcome/login', [WelcomeController::class, 'login']);
 
-Route::post('/welcome/register', [WelcomeController::class, 'register'])->name('register');
+Route::post('/welcome/register', [WelcomeController::class, 'register']);
 
 Route::get('/logout', [WelcomeController::class, 'logout'])->name('logout');
 

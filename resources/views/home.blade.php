@@ -16,8 +16,8 @@
     
         $user_name = Session::get('user_name');
         $user_sticker = Session::get('user_sticker');
-        if($user_name === ''){
-           $user_name = '請點擊右上角更改暱稱';
+        if($user_name === '小松果'){
+           $user_name = '請點擊右上角更改暱稱及頭像';
         }
     
     ?>
