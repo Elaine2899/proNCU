@@ -1,5 +1,5 @@
 body {
-    font-family: Arial, sans-serif;
+    /* font-family: Arial, sans-serif; */
     /* padding: 20px; */
     background-color: #ede0d4;
     color: #414833;
@@ -76,7 +76,7 @@ label img {
     transition: all 0.1s ease-in;
 }
 
-label img:hover{
+.img-option:checked + label > img, .photo label img:hover{
     border: 5px solid rgba(65,72,51, 0.75);
 }
 

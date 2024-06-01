@@ -16,6 +16,7 @@ class CourseController extends Controller
     public function ShowCourseDashboard(){
         return view(view:"course_dashboard");
     }
+    
 
     public function getDashboardCourses(){
 

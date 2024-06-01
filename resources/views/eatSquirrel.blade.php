@@ -9,7 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="{{asset('css/eatSquirrel.css')}}" />
   </head>
-  <body style="height: 100vh; background-image: url('./side-squirrel.png')">
+  <body style="height: 100vh; background-image: url('/proncu/public/img/eatSquirrel/side-squirrel.png')">
     <div class="d-flex justify-content-center" style="height: 100vh;">
       
       <div class="p-2 d-flex align-items-center">
@@ -28,7 +28,7 @@
         </button>
       </div>
     </div>
-    <script src="{asset('js/eatSquirrel.js')}}"></script>
+    <script src="{{asset('js/eatSquirrel.js')}}"></script>
     <!-- <script src="{{asset('js/eatSquirrel_wall.js')}}"></script> -->
   </body>
 </html>

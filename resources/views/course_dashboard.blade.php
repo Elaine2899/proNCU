@@ -79,15 +79,15 @@
         </div>
     </div>
 
-    <!-- 下拉選累計學期 -->
+    <!-- 下拉選累計學期
     <div class="container justify-content-center d-flex p-4">
-        <select class="form-select form-select-sm align-self-center" style="width: 20em;">
-            <option selected>計算至112-2學期</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+        <select id="semester-select" class="form-select form-select-sm align-self-center" style="width: 20em;">
+            <option selected>計算至...學期</option>
+            <option value="112-2">112-2</option>
+            <option value="113-1">113-1</option>
+            
         </select>
-    </div>
+    </div> -->
 
     <!-- 歷年課程 -->
     <h4 class="dashBoard_class_h4" style="display: block; text-align: center; color: #ede0d4; background-color: #656d4a; padding: 10px; width: 95%;">歷年課程</h4>

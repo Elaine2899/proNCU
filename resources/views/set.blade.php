@@ -4,7 +4,7 @@
     
     <link rel="icon" href="resources/img/squirrel_o.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{asset('css/setting.css')}}">
+    <link rel="stylesheet" href="{{asset('css/setting_new.css')}}">
 
 @endsection
 
@@ -16,7 +16,7 @@
     </div>
 
     <!-- <h1>個人化設定</h1> -->
-    <div class="setting-content text-left">
+    <div class="setting-content text-center">
         <h1 class="p-3">個人設定</h1>
         <form method="POST" action="{{ route('change.user.data') }}">
         @csrf
@@ -64,7 +64,5 @@
             <div class="sb-container"></div>
         </form>
     </div>
-    
-    <!-- <script src="{{asset('js/set.js')}}"></script> -->
 
 @endsection 

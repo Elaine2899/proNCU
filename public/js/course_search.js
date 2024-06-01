@@ -2,7 +2,6 @@ $(document).ready(function() {
     const coursesPerPage = 15;
     let data = {};
     let filteredData = [];
-    let totalPages = 0;
 
     // 從data.json載入資料
     $.getJSON('/proncu/public/js/data.json', function(response) {
@@ -15,7 +14,42 @@ $(document).ready(function() {
         });
 
         // 初始化顯示所有課程
-        // call function displayCourses
+        displayCourses(filteredData);
+    });
+
+    function getSelectedPeriods() {
+        var selectedPeriods = [];
+        $('input[type="checkbox"]:checked').each(function() {
+            selectedPeriods.push($(this).val());
+        });
+        return selectedPeriods;
+    }
+
+    // 監聽確認時段選擇的按鈕
+    $('#submit-btn').click(function() {
+        const selectedPeriods = getSelectedPeriods();
+        filteredData = data.courses.filter(course => {
+            // 檢查每個所選時段是否都包含在課程的時段中
+            return selectedPeriods.every(period => course.classTimes.includes(period));
+        });
+        displayCourses(filteredData);
+    });
+
+    // 監聽輸入事件
+    $('.form-control').on('input', function() {
+        const courseName = $('.course-name-filter').val().trim().toLowerCase();
+        const teacherName = $('.teacher-filter').val().trim().toLowerCase();
+        const classNo = $('.class-no-filter').val().trim().toLowerCase();
+        
+
+        // 根據輸入內容過濾課程
+        filteredData = data.courses.filter(course => {
+            return course.title.toLowerCase().includes(courseName) &&
+                course.teachers.some(teacher => teacher.toLowerCase().includes(teacherName)) &&
+                course.classNo.toLowerCase().includes(classNo);
+        });
+
+        // 顯示過濾後的課程
         displayCourses(filteredData);
     });
 
@@ -35,25 +69,43 @@ $(document).ready(function() {
                                         ? course.classTimes.join(", ") 
                                         : "";
 
+            // 定義變數 courseCategory
+            let courseCategory = '';
+
+            // 获取 classNo 的前两个字符
+            const classPrefix = course.classNo.substring(0, 2);
+
+            // 根据 classPrefix 或 courseType 的条件更改 courseCategory 的值
+            //只有資管系課程的判斷
+            if (classPrefix === 'PE') {
+                courseCategory = '體育';
+            } else if (classPrefix === 'GS' || classPrefix === 'CC') {
+                courseCategory = '通識';
+            } else if (course.courseType === 'REQUIRED') {
+                courseCategory = '必修';
+            } else if (course.courseType === 'ELECTIVE' && classPrefix === 'IM') {
+                courseCategory = '系選修';
+            } else if (course.courseType === 'ELECTIVE') {
+                courseCategory = '外系選修';
+            }
+
             // 將課程信息添加到 course-list
             var parent = $("<div>").addClass("row");
             parent.append(
                 $("<div>").addClass("col").html(course.classNo),
                 $("<div>").addClass("col").html(course.title),
-                $("<div>").addClass("col").html(course.courseType),
+                $("<div>").addClass("col").html(courseCategory),
                 $("<div>").addClass("col").html(course.credit),
                 $("<div>").addClass("col").html(course.teachers.join(", ")),
                 $("<div>").addClass("col").html(formattedClassTimes),
                 $("<div>").addClass("col").append(
                     $("<div>").addClass("btn-group dropend").append(
-                        
                         $("<button>").attr({
                             type: "button",
                             class: "btn btn-secondary dropdown-toggle",
                             "data-bs-toggle": "dropdown",
                             "aria-expanded": "false"
                         }).text("加入"),
-                        
                         $("<ul>").addClass("dropdown-menu").append(
                             $("<li>").append( 
                                 $("<a>").addClass("dropdown-item").click(function(){
@@ -182,23 +234,6 @@ $(document).ready(function() {
         displayCourses(filteredData, page);
     });
 
-    // 監聽輸入事件
-    $('.form-control').on('input', function() {
-        const courseName = $('.course-name-filter').val().trim().toLowerCase();
-        const teacherName = $('.teacher-filter').val().trim().toLowerCase();
-        const classNo = $('.class-no-filter').val().trim().toLowerCase();
-        // const classPeriod = $('.class-period-filter').val().trim().toLowerCase();
-
-        // 根據輸入內容過濾課程
-        filteredData = data.courses.filter(course => {
-            return course.title.toLowerCase().includes(courseName) &&
-                course.teachers.some(teacher => teacher.toLowerCase().includes(teacherName)) &&
-                course.classNo.toLowerCase().includes(classNo);
-        });
-
-        // 顯示過濾後的課程
-        displayCourses(filteredData);
-    });
 
     function addCourse(classNo, classSemester, courseType) {
         // 定義變數 courseCategory
@@ -241,6 +276,5 @@ $(document).ready(function() {
 
         });
     }
-    
 
 });

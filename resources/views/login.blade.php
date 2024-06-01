@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="resources/img/squirrel_o.png">
     <title>登入</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <link rel="stylesheet" href="{{asset('css/login_new.css')}}">
@@ -10,7 +11,6 @@
 </head>
 <body>
     
-
     <div class="container-fluid" id="con-login">
         <div class="row align-items-center" style="height: 100vh">
             <!-- 左邊 -->
@@ -73,5 +73,10 @@
         </div>
 
     <script src="{{asset('js/login_new.js')}}"></script>
+    @if(session('error'))
+    <script>
+        alert("{{ session('error') }}");
+    </script>
+    @endif
 </body>
 </html>

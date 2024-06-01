@@ -1,11 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // const userPhoto = localStorage.getItem('user-img');
-    // const userName = localStorage.getItem('user-name');
-
-    // if (userPhoto && userName) {
-    //     document.getElementById('user-photo').src = userPhoto;
-    //     document.getElementById('user-name').textContent = userName;
-    // }
+    
     let objectDate = new Date();
 
     let day = objectDate.getDate();
@@ -38,8 +32,7 @@ function getCalendar(event){
     // 创建并插入提醒项
     event.forEach((event) => {
         const pElement = document.createElement('p');
-        pElement.textContent = event.events_name;
-        console.log(event.events_name);
+        pElement.textContent = `# ${event.events_name}`;
         pElement.classList.add('reminder-item');
         reminderContainer.appendChild(pElement);
 

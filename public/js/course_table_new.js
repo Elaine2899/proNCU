@@ -77,39 +77,39 @@ function renderCourses(courses, filteredData) {
                     const [day, period] = time.split('-');
                     
                     const periodIndex = periods.indexOf(period.toString());
-
+                    
                     // 找到与 period 相匹配的行
                     if (periodIndex !== -1) {
                         const row = courseGrid.rows[periodIndex];
                         if (row) {
                             const cell = row.cells[day];
                             if (cell) {
-                                    // 防止移除按鈕和課程信息重疊
-                                    cell.innerHTML += `${courseData.title}<br>${courseData.teachers}<br>`;
-                                    // 創建移除課程按鈕
-                                    const removeButton = document.createElement('button');
-                                    removeButton.textContent = '移除課程';
-                                    removeButton.className = 'btn btn-danger btn-sm cancel-btn';
-                                    removeButton.addEventListener('click', () => {
-                                        // 處理按下按鈕後的邏輯
-                                        $.ajax({
-                                            url: '/proncu/public/course/delete',
-                                            method: 'DELETE',
-                                            headers: {
-                                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                                            },
-                                            data: {
-                                                semester: "112-2",
-                                                courseNo: course.courseNo
-                                            },
-                                            success: function() {
-                                                location.reload();
-                                            },
-                                    
-                                        });
-                                        // 例如，可以從介面上移除相應的課程
+                                const courseInfo = document.createElement('div');
+                                // 防止移除按鈕和課程信息重疊
+                                courseInfo.innerHTML = `${courseData.title}<br>${courseData.teachers}<br>`;     
+                                // 创建移除课程按钮
+                                const removeButton = document.createElement('button');
+                                removeButton.textContent = '移除课程';
+                                removeButton.className = 'btn btn-danger btn-sm cancel-btn';
+                                removeButton.addEventListener('click', () => {
+                                    // 处理点击按钮后的逻辑
+                                    $.ajax({
+                                        url: '/proncu/public/course/delete',
+                                        method: 'DELETE',
+                                        headers: {
+                                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                        },
+                                        data: {
+                                            semester: "112-2",
+                                            courseNo: course.courseNo
+                                        },
+                                        success: function() {
+                                            location.reload();
+                                        },
                                     });
-                                    cell.appendChild(removeButton);
+                                });        
+                                courseInfo.appendChild(removeButton);
+                                cell.appendChild(courseInfo);   
                             }
                         }
                     }

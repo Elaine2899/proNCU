@@ -14,7 +14,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     
-    <script src= "{{asset('js/course_table.js')}}"></script>
+    <script src= "{{asset('js/course_table_new.js')}}"></script>
 
 @endsection
 
@@ -56,26 +56,5 @@
             </table>
         </div>
     </div>
-
-
-    <script> //按移除課程會從課表上消失
-      document.addEventListener("DOMContentLoaded", function() {
-        const buttons = document.querySelectorAll('.cancel-btn');
-        
-        buttons.forEach(button => {
-          button.addEventListener('click', function() {
-            const cell = button.parentElement;
-            const courseName = cell.innerHTML.split('<br>')[0].trim();
-            
-            const cells = document.querySelectorAll('td');
-            cells.forEach(td => {
-              if (td.innerHTML.includes(courseName)) {
-                td.innerHTML = '';
-              }
-            });
-          });
-        });
-      });
-    </script>
 
 @endsection

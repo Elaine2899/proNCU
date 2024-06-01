@@ -181,6 +181,8 @@ function closeModal() {
      // 隐藏模态框
      document.getElementById('eventModal').style.display = 'none';
 
+     location.reload();
+
 }
 
 function removeEvent(year, month, day, eventText) {

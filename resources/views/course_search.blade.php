@@ -15,7 +15,7 @@
 
     <script src="{{asset('js/course_search.js')}}"></script>
     <script src="{{asset('js/toast.js')}}"></script>
-    <link rel="stylesheet" href="{{asset('css/course_search.css')}}">
+    <link rel="stylesheet" href="{{asset('css/course_search_new.css')}}">
 
 @endsection
 

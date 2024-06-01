@@ -1,7 +1,7 @@
 
 // 監聽網頁加載完成事件
 document.addEventListener('DOMContentLoaded', function() {
-
+    
     // 從 data.json 載入資料
     $.getJSON('/proncu/public/js/data.json', function(response) {
         filteredData = response.courses;
@@ -51,6 +51,7 @@ function renderCourses(courses, filteredData){
                      <div class="col"><strong>授課老師</strong></div>
                      <div class="col"><strong>修課學期</strong></div>
                      <div class="col"><strong>更改課別</strong></div>
+                     <div class="col"><strong>刪除課程</strong></div>
                  `;
                  categoryContainer.appendChild(rowTitle);
 
@@ -77,7 +78,7 @@ function renderCourses(courses, filteredData){
                         <div class="col">${course.semester}</div>
                         `;
                         
-                        if(courseCategory === '通識'){
+                        if(courseCategory === '通識' || courseCategory === '外系選修'){
                             courseRow.innerHTML += `
                             <div class="col">
                                 <div class="btn-group dropend">
@@ -97,6 +98,13 @@ function renderCourses(courses, filteredData){
                             </div>
                             `;
                         }
+
+                       
+                        courseRow.innerHTML += `
+                        <div class="col">
+                        <button class="btn btn-danger btn-sm cancel-btn" onclick="removeCourse('${course.courseNo}')">移除课程</button>
+                        </div>
+                        `
                         // 將 courseRow 添加到 courseRowContainer
                         courseRowContainer.appendChild(courseRow);
                         // 將 courseRowContainer 添加到 categoryContainer
@@ -105,6 +113,23 @@ function renderCourses(courses, filteredData){
                 });
             })
 
+}
+
+function removeCourse(courseNo) {
+    $.ajax({
+        url: '/proncu/public/course/delete',
+        method: 'DELETE',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        data: {
+            semester: "112-2",
+            courseNo: courseNo
+        },
+        success: function() {
+            location.reload();
+        },
+    });
 }
 
 function changeCourseCategory(Course, Category){
