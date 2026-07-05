@@ -12,6 +12,19 @@
 
     @yield('head')
 
+    <!-- Auto-correct /proncu/public/ prefixes in Ajax requests under php artisan serve -->
+    <script>
+        if (typeof $ !== 'undefined' && $.ajaxPrefilter) {
+            $.ajaxPrefilter(function(options, originalOptions, jqXHR) {
+                if (options.url && options.url.indexOf('/proncu/public/') === 0) {
+                    if (window.location.pathname.indexOf('/proncu/public') === -1) {
+                        options.url = options.url.replace('/proncu/public/', '/');
+                    }
+                }
+            });
+        }
+    </script>
+
     <meta charset="utf-8">
 
     <title>Pro^2 NCU - @yield('title')</title>

@@ -15,12 +15,12 @@ document.addEventListener("DOMContentLoaded", function() {
             button.addEventListener('click', function() {
                 submitValue = button.value; // 保存按下按鈕的值
                 //根據按鈕的值來決定提交到哪個路徑
+                let prefix = window.location.pathname.indexOf('/proncu/public') !== -1 ? '/proncu/public' : '';
                 if (submitValue === '登入') {
-                    loginForm.action = '/proncu/public/welcome/login'; // 登入路徑
+                    loginForm.action = prefix + '/welcome/login'; // 登入路徑
                     loginForm.submit();
                 } else if (submitValue === '註冊') {
-
-                    loginForm.action = '/proncu/public/welcome/register'; // 註冊路徑
+                    loginForm.action = prefix + '/welcome/register'; // 註冊路徑
                     loginForm.submit();
                 }
                 
