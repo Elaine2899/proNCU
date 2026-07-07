@@ -29,12 +29,12 @@ div#login-form{
 }
 
 .pd-5{
-    padding: 5%;
+    padding: 12px 20px;
 }
 
 input, button{
     margin: 15px;
-    width: 100%;
+    width: calc(100% - 30px);
     /* height: 35%; */
     background-color: rgba(220,201,182,0.4);
     border-radius: 10px;

@@ -33,7 +33,7 @@ class WelcomeController extends Controller
         $user = new User();
         $user->studentID = $studentid;
         $user->password = Hash::make($password);
-        $user->userName = "小松果";
+        $user->userName = $request->input('username', '小松果');
         $user->sticker_id = "img1.jpg";
         $user->save();
 

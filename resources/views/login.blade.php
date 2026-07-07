@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="resources/img/squirrel_o.png">
+    <link rel="icon" href="{{ asset('img/squirrel_o.png') }}">
     <title>登入</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <link rel="stylesheet" href="{{asset('css/login_new.css')}}">
@@ -32,8 +32,9 @@
                     <form class="flex-fill d-flex flex-column align-self-center" method="POST" id="loginForm">
                     @csrf
                         <div class="d-flex flex-column flex-fill justify-content-center">
-                            <input class="align-self-center pd-5" type="text" placeholder="學號" class="form-control" name="studentid" id="sid">
-                            <input class="align-self-center pd-5" type="password" placeholder="密碼" class="form-control" name="password" id="ps">
+                            <input class="form-control align-self-center pd-5" type="text" placeholder="學號" name="studentid" id="sid">
+                            <input class="form-control align-self-center pd-5" type="password" placeholder="密碼" name="password" id="ps">
+                            <input type="hidden" name="username" id="register-hidden-username">
                         </div>
                         <!-- 送出 -->
                         <div class="d-flex justify-content-center row pb-5">
@@ -66,12 +67,13 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
-                <button type="button" class="btn btn-primary">送出</button>
+                <button type="button" class="btn btn-primary" id="confirm-register-btn">送出</button>
             </div>
             </div>
         </div>
         </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
     <script src="{{asset('js/login_new.js')}}"></script>
     @if(session('error'))
     <script>

@@ -1,31 +1,48 @@
 document.addEventListener("DOMContentLoaded", function() {
-    // 確保DOM完全載入後才執行
+    var loginForm = document.getElementById('loginForm');
+    var prefix = window.location.pathname.indexOf('/proncu/public') !== -1 ? '/proncu/public' : '';
     
-    document.getElementById('loginForm').addEventListener('submit', function(event) {
-        event.preventDefault(); // 防止表單默認提交行為
-
-        // 查找所有具有 name="action" 屬性的按鈕
-        var buttons = document.querySelectorAll('input[name="action"]');
-
-        // 變量來保存哪個按鈕被按下
-        var submitValue = '';
-
-        // 為每個按鈕添加click事件監聽器
-        buttons.forEach(function(button) {
-            button.addEventListener('click', function() {
-                submitValue = button.value; // 保存按下按鈕的值
-                //根據按鈕的值來決定提交到哪個路徑
-                let prefix = window.location.pathname.indexOf('/proncu/public') !== -1 ? '/proncu/public' : '';
-                if (submitValue === '登入') {
-                    loginForm.action = prefix + '/welcome/login'; // 登入路徑
-                    loginForm.submit();
-                } else if (submitValue === '註冊') {
-                    loginForm.action = prefix + '/welcome/register'; // 註冊路徑
-                    loginForm.submit();
-                }
-                
-            });
+    // 儲存被點擊的按鈕值 (登入 或 註冊)
+    var submitValue = '';
+    
+    var buttons = document.querySelectorAll('input[name="action"]');
+    buttons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            submitValue = button.value;
         });
+    });
 
+    loginForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // 防止預設提交
+
+        if (submitValue === '登入') {
+            loginForm.action = prefix + '/welcome/login';
+            loginForm.submit();
+        } else if (submitValue === '註冊') {
+            var studentId = document.getElementById('sid').value.trim();
+            var password = document.getElementById('ps').value.trim();
+            
+            if (studentId === '' || password === '') {
+                alert('請先輸入學號與密碼再進行註冊！');
+                return;
+            }
+            
+            // 彈出註冊用戶名 Modal
+            var myModal = new bootstrap.Modal(document.getElementById('RegisterModal'));
+            myModal.show();
+        }
+    });
+
+    // 點擊 Modal 內的送出按鈕
+    document.getElementById('confirm-register-btn').addEventListener('click', function() {
+        var username = document.getElementById('register-user-name').value.trim();
+        if (username === '') {
+            alert('請輸入用戶名！');
+            return;
+        }
+        
+        document.getElementById('register-hidden-username').value = username;
+        loginForm.action = prefix + '/welcome/register';
+        loginForm.submit();
     });
 });
