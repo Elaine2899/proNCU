@@ -78,5 +78,10 @@
         alert("{{ session('error') }}");
     </script>
     @endif
+    @if($errors->any())
+    <script>
+        alert("{{ $errors->first() }}");
+    </script>
+    @endif
 </body>
 </html>

@@ -21,8 +21,7 @@ class CourseController extends Controller
     public function getDashboardCourses(){
 
         $sid = Session::get('user_sid');
-        $query = "SELECT * FROM courses WHERE user_sid = ?";
-        $courses = DB::select($query, [$sid]);
+        $courses = Course::where('user_sid', $sid)->get();
         return response()->json($courses);
 
     }
@@ -35,8 +34,7 @@ class CourseController extends Controller
 
         $sid = Session::get('user_sid');
         $semester = "112-2";
-        $query = "SELECT * FROM courses WHERE user_sid = ? AND semester = ?";
-        $courses = DB::select($query, [$sid, $semester]);
+        $courses = Course::where('user_sid', $sid)->where('semester', $semester)->get();
         return response()->json($courses);
 
     }

@@ -18,7 +18,7 @@ class CalendarController extends Controller
     public function getEvents(){
 
         $sid = Session::get('user_sid');
-        $events = DB::table('events')->where('user_sid', $sid)->get();
+        $events = Event::where('user_sid', $sid)->get();
         return response()->json($events);
 
     }
@@ -26,8 +26,7 @@ class CalendarController extends Controller
     public function getTodayEvents(Request $request){
 
         $sid = Session::get('user_sid');
-        $query = "SELECT * FROM events WHERE user_sid = ? AND end_time = ?";
-        $events = DB::select($query, [$sid, $request->date]);
+        $events = Event::where('user_sid', $sid)->where('end_time', $request->date)->get();
         return response()->json($events);
 
     }

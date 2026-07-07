@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('userName');
             $table->string('studentID');
-            $table->string('password', 20);            
+            $table->string('password');            
             $table->timestamps();
         });
     }
