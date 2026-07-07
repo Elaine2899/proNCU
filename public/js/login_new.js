@@ -23,7 +23,15 @@ document.addEventListener("DOMContentLoaded", function() {
             var password = document.getElementById('ps').value.trim();
             
             if (studentId === '' || password === '') {
-                alert('請先輸入學號與密碼再進行註冊！');
+                alert('學號與密碼為必填欄位！');
+                return;
+            }
+            if (studentId.length < 4) {
+                alert('學號長度不得少於 4 個字元！');
+                return;
+            }
+            if (password.length < 4) {
+                alert('密碼長度不得少於 4 個字元！');
                 return;
             }
             
