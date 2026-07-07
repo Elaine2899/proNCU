@@ -1,85 +1,84 @@
-# pro-pro-NCU 專案重構與改造計畫書
+# NCU 課程管理系統 —— 重構與自我挑戰計畫書
 
-本文件紀錄了目前 `pro-pro-NCU` 專案所面臨的系統架構與安全性問題，並擬定對應的重構優化計畫，以便在後續的改造過程中能清晰地呈現「改造前後」的對比與修正成果。
+## 📝 1. 前言與自主提升動機
+
+這個專案是我在大二時期為了課程或練習所撰寫的 `pro-pro-NCU` 課程管理與排課系統。當時雖然完成了基本的選課、排課與行事曆功能，但回頭審視當初寫的程式碼，發現不論是在**系統安全性**、**權限控制**，還是**代碼規範（Clean Code）**上，都有許多可以大幅精進與改進的空間。
+
+為了提升自我的後端開發實力，並加強對現代 Web 應用程式安全防護（如密碼雜湊、路由中介軟體）的理解，我決定發起這個**自主重構計畫**。我將針對這個大二的舊專案進行全面的安全性改造與程式碼重構，並透過這份文件詳細記錄「改造前後」的差異，作為自己程式設計能力成長的紀錄。
 
 ---
 
-## 📌 1. 專案現狀與問題診斷
+## 🔍 2. 舊專案問題診斷與分析
 
-經過系統審查，專案目前存在以下 5 大主要問題：
+以現在更成熟的開發視角來看，大二時期的程式碼主要存在以下 5 大問題與安全隱憂：
 
-| 編號 | 診斷類別 | 具體問題描述 | 嚴重程度 | 潛在風險 |
+| 編號 | 診斷類別 | 大二時期的舊設計 | 潛在風險與缺點 | 預期改善方案 |
 | :--- | :--- | :--- | :--- | :--- |
-| **01** | **資訊安全** | 註冊時密碼直接以 **明文（Plaintext）** 寫入資料庫，登入時亦直接比對明文。 | 🔴 嚴重 (Critical) | 資料庫外洩時，所有使用者的原始密碼直接曝光。 |
-| **02** | **權限控制** | 登入中介軟體（Middleware）未套用到路由上，訪客可透過輸入網址直接存取後台頁面。 | 🔴 嚴重 (Critical) | 匿名使用者可隨意操作系統，且在 Session 為空時會造成系統報錯。 |
-| **03** | **資料庫設計** | 密碼欄位長度限制為 `20` 字元，不足以儲存雜湊加密後的 60 字元字串。 | 🟡 中度 (Medium) | 當啟用 Bcrypt 加密時，寫入資料庫會因長度截斷而發生儲存失敗。 |
-| **04** | **資料驗證** | 登入與註冊無後端表單欄位驗證（Validation），直接讀取前端輸入。 | 🟡 中度 (Medium) | 使用者可提交空資料或非法格式，造成程式出錯或髒資料寫入。 |
-| **05** | **代碼規範** | 控制器中混合使用原生 SQL 語句（`DB::select`）與 Eloquent ORM。 | 🟢 輕度 (Low) | 降低程式碼可維護性，且手寫 SQL 語法較難維護且不符合 Laravel 慣例。 |
+| **01** | **資訊安全** | 註冊時密碼直接以 **明文（Plaintext）** 寫入資料庫，登入時亦直接比對明文。 | 資料庫一旦外洩，使用者的原始密碼將直接曝光，極度危險。 | 引入安全的 `Hash::make()` (Bcrypt) 對密碼進行雜湊加密存儲。 |
+| **02** | **權限控制** | 後台頁面（首頁、行事曆、課表）沒有綁定驗證中介軟體（Middleware）。 | 任何人只要在瀏覽器直接輸入網頁路由網址，即可繞過登入直接存取系統。 | 套用 Laravel 自訂的中介軟體，強制未登入的訪客重新導向至登入頁。 |
+| **03** | **資料庫設計** | 密碼欄位限制長度為 `20` 字元（VARCHAR）。 | Bcrypt 加密後的字串固定為 60 字元，長度限制會導致寫入失敗或字串截斷。 | 修改 Migration 將密碼欄位長度放寬，以便能安全儲存加密雜湊。 |
+| **04** | **資料驗證** | 登入與註冊控制器中，沒有對前端傳入的學號與密碼欄位進行後端驗證（Validation）。 | 使用者可提交空資料，可能造成資料庫髒資料寫入或程式執行出錯。 | 導入 Laravel 的 `$request->validate()` 驗證器，確保資料完整性。 |
+| **05** | **代碼規範** | 控制器中混合使用原生 SQL 語句（`DB::select`）與 Eloquent ORM。 | 程式碼混亂、難以維護，且未充分發揮 Laravel Eloquent 簡潔優雅的特點。 | 全面將原生 SQL 重構為標準的 Eloquent ORM 鏈式調用，提升可讀性。 |
 
 ---
 
-## 🛠️ 2. 改造計畫與步驟
+## 🛠️ 3. 重構執行計畫
 
-我們將按照以下步驟逐步進行專案的優化重構：
+本計畫預計分為三個階段進行自主改造：
 
-### 階段一：安全性與資料庫改造
-1. **修改 Migration**：將 `users` 表的 `password` 欄位長度變更為無限制（預設 255 字元）。
-2. **密碼雜湊加密**：
-   * 在註冊控制器中使用 `Hash::make()` 對密碼進行加密。
-   * 在登入控制器中使用 `Hash::check()` 進行安全驗證。
+### 階段一：底層安全性強化（Security Focus）
+1. **調整資料表結構**：更新資料庫 Migration，解除密碼欄位 20 字元的長度限制。
+2. **實作密碼雜湊化**：
+   * 在註冊階段使用 `Hash::make` 對密碼進行加密。
+   * 在登入階段使用 `Hash::check` 進行雜湊比對驗證。
 
-### 階段二：路由與權限防護
-1. **註冊中介軟體**：在 `bootstrap/app.php` 中將自訂的 `sess` 驗證中介軟體命名並註冊。
-2. **套用 Middleware**：在 `routes/web.php` 中使用路由群組（Route Group）將所有後台頁面（`/home`、`/calendar`、`/course` 等）納入登入驗證保護。
+### 階段二：系統邊界與權限防護（Authorization Focus）
+1. **中介軟體註冊**：在 Laravel 的中介軟體配置中，註冊自訂的登入驗證中介軟體。
+2. **路由群組防護**：將所有必須登入才能存取的路由包在 `auth` 中介軟體群組內。
 
-### 階段三：程式碼健壯性與重構
-1. **新增欄位驗證**：在登入與註冊控制器中，使用 `$request->validate()` 強制要求學號與密碼必填，並處理錯誤回傳。
-2. **重構為 Eloquent ORM**：將所有的手寫 SQL 語句替換成簡潔安全的 Eloquent 方法。
-
----
-
-## 📊 3. 改造前後對照表 (進行中)
-
-在稍後的改造過程中，我們將在此紀錄具體的代碼變更對照：
-
-### 3.1 密碼加密存儲
-```diff
-# 改造前 (WelcomeController.php)
-- $user->password = $password;
-
-# 改造後 (WelcomeController.php)
-+ $user->password = bcrypt($password); // 或使用 Hash::make($password)
-```
-
-### 3.2 密碼比對驗證
-```diff
-# 改造前 (WelcomeController.php)
-- $query = "SELECT * FROM users WHERE studentID = ? AND password = ?";
-- $result = DB::select($query, [$studentid, $password]);
-
-# 改造後 (WelcomeController.php)
-+ $user = User::where('studentID', $studentid)->first();
-+ if ($user && Hash::check($password, $user->password)) { ... }
-```
-
-### 3.3 路由權限保護
-```diff
-# 改造前 (routes/web.php)
-- Route::get('/home', [HomeController::class, 'ShowHomePage'])->name('home');
-
-# 改造後 (routes/web.php)
-+ Route::middleware(['sess'])->group(function () {
-+     Route::get('/home', [HomeController::class, 'ShowHomePage'])->name('home');
-+ });
-```
+### 階段三：健壯性與代碼美化（Clean Code & Robustness）
+1. **欄位驗證機制**：加入後端表單欄位驗證，防止非法或空值輸入。
+2. **ORM 語法重構**：將 Controller 內的手寫 SQL 查詢全部替換為符合 Eloquent 規範的查詢方式。
 
 ---
 
-## 📋 4. 重構任務清單
+## 📊 4. 改造前後對照紀錄 (記錄中)
+
+這部分將用來記錄我在重構過程中所做的具體程式碼修改，以展現自我的實作精進：
+
+### 4.1 註冊與登入的密碼加密
+* **大二寫法（明文儲存）**：
+  ```php
+  // WelcomeController.php
+  $user->password = $password;
+  ```
+* **重構後寫法（雜湊加密）**：
+  ```php
+  // WelcomeController.php
+  $user->password = Hash::make($password);
+  ```
+
+### 4.2 資料庫查詢方式
+* **大二寫法（混合手寫 SQL）**：
+  ```php
+  // WelcomeController.php
+  $query = "SELECT * FROM users WHERE studentID = ? AND password = ?";
+  $result = DB::select($query, [$studentid, $password]);
+  ```
+* **重構後寫法（標準 Eloquent ORM）**：
+  ```php
+  // WelcomeController.php
+  $user = User::where('studentID', $studentid)->first();
+  if ($user && Hash::check($password, $user->password)) { ... }
+  ```
+
+---
+
+## 📋 5. 重構任務與自主學習進度表
 
 - [ ] **任務 01**：修改資料庫欄位長度 (Migration) & 更新本地 SQLite 資料庫。
 - [ ] **任務 02**：實作註冊與登入密碼雜湊加密 (`Hash::make` & `Hash::check`)。
 - [ ] **任務 03**：註冊並套用 `sess` 登入驗證中介軟體。
 - [ ] **任務 04**：登入/註冊加上 `$request->validate` 表單驗證。
 - [ ] **任務 05**：將手寫 SQL 全部重構成 Eloquent ORM。
-- [ ] **任務 06**：本地完整測試並 Push 到 GitHub。
+- [ ] **任務 06**：完成重構後的本地功能整合測試。
